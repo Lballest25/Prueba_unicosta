@@ -34,30 +34,18 @@ const form = document.querySelector("#form");
 form.addEventListener("submit", (e) =>{
     e.preventDefault();
     const datos = new FormData(document.getElementById('form'));
-    const url = `${servidor}/controlador/ejecucionConsultas.php?tipo_operacion=obtenerNotas`;
+    const url = `${servidor}/controlador/ejecucionConsultas.php?tipo_operacion=insertarNotas`;
     fetch(url, {
         method:'post',
         body:datos
     })
     .then (data => data.json())
     .then (data => {
+        console.log(data);
         if (data != 0) {
-            pintar_tabla_CrudNotas(data);
-            form.reset();
-            Swal.fire({
-                position: 'center',
-                icon: 'success',
-                title: 'Registrado!',
-                showConfirmButton: false,
-                timer: 1500
-          })
-        } else {
-            Swal.fire({
-                icon: 'error',
-                title: 'Oops...',
-                text: 'Debes completar todos los campos!'
-              })
-          }
+                pintar_tabla_CrudNotas(data);
+                form.reset();
+            }
     })
     .catch(function(error){
         console.log('error', error);

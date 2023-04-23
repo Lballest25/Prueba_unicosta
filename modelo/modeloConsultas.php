@@ -50,10 +50,14 @@ class consultas extends bdconexion {
     }
 
     public function insertar_notas($id_estudiante, $nota1, $nota2, $nota3){
-        $sql = bdconexion::conexion()->prepare("INSERT INTO Notas (estudiante_identificacion, nota1, nota2, nota3) VALUES ('".$id_estudiante."','".$nota1."','".$nota2."','".$nota3."')");
-        if ($sql->execute()) {
-            $resultado = self::select_estudiantes();
-            return $resultado;
+        $sql = bdconexion::conexion()->prepare("SELECT identificacion FROM estudiantes WHERE identificacion =".$id_estudiante);
+        $sql->execute();
+        if ($sql->rowCount() > 0) {
+            $sql = bdconexion::conexion()->prepare("INSERT INTO Notas (estudiante_identificacion, nota1, nota2, nota3) VALUES ('".$id_estudiante."','".$nota1."','".$nota2."','".$nota3."')");
+            if ($sql->execute()) {
+                $resultado = self::obtener_notas();
+                return $resultado;
+            }
         }
     }
 
