@@ -19,7 +19,7 @@
 </div>
 
 <div class="contenedorCrudNotas">
-<div class="contenedorFormCrear">
+<div id="contenedorFormCrear" class="contenedorFormCrear" >
 <h2>Crear nota</h2>
 	<form id="form">
     <label for="nota1">Nota 1:</label>
@@ -35,6 +35,22 @@
     <input type="number" name="identificacion" id="identificacion">
     <br><br>
 	<button type="submit">Guardar notas</button>
+	</form>
+</div>
+<div id="contenedorFormActualizar" class="contenedorFormCrear" hidden="true">
+<h2>Crear nota</h2>
+	<form id="formActualizar">
+    <label for="nota1">Nota 1:</label>
+    <input type="number" name="nota1A" id="nota1A" min="0" max="5" required>
+    <br><br>
+    <label for="nota2">Nota 2:</label>
+    <input type="number" name="nota2A" id="nota2A" min="0" max="5" required>
+    <br><br>
+    <label for="nota3">Nota 3:</label>
+    <input type="number" name="nota3A" id="nota3A" min="0" max="5" required>
+    <br><br>
+    <input type="number" name="identificacionA" id="identificacionA">
+	<button onclick="actualizar()" >Actualizar notas</button>
 	</form>
 </div>
 

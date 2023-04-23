@@ -40,7 +40,7 @@ class consultas extends bdconexion {
     public function obtener_notasEstudiante($identificacion){
         $sql = bdconexion::conexion()->prepare("SELECT * FROM Notas WHERE estudiante_identificacion =".$identificacion.";");
         $sql->execute();
-        return $notas = $sql->fetch(PDO::FETCH_ASSOC);
+        return $notas = $sql->fetchAll(PDO::FETCH_ASSOC);
     }
 
     public function obtener_notas(){
@@ -61,9 +61,15 @@ class consultas extends bdconexion {
         }
     }
 
-    public function actualizar_notas($id_nota, $nota1, $nota2, $nota3){
-        $sql = bdconexion::conexion()->prepare("UPDATE Notas SET nota1=".$nota1.", nota2=".$nota2.", nota3=".$nota3." WHERE id=".$id_nota);
+    public function actualizar_notas($id_estudiante, $nota1, $nota2, $nota3){
+        $sql = bdconexion::conexion()->prepare("UPDATE Notas SET nota1=".$nota1.", nota2=".$nota2.", nota3=".$nota3." WHERE estudiante_identificacion=".$id_estudiante);
         $sql->execute();
+        if ($sql->rowCount() > 0) {
+            $resultado = self::obtener_notas();
+            return $resultado;
+        }else {
+            return "error";
+        }
     }
 
     public function calcular_nota($identificacion){
