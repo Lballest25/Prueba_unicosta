@@ -1,22 +1,39 @@
-const consulta = () => {
-  const token = "";
-    fetch("http://consultas.cuc.edu.co/api/v1.0/grupos", {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization:
-          "JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo0LCJ1c2VybmFtZSI6InBydWViYTIwMjJAY3VjLmVkdS5jbyIsImV4cCI6MTY0OTQ1MzA1NCwiY29ycmVvIjoicHJ1ZWJhMjAyMkBjdWMuZWR1LmNvIn0.MAoFJE2SBgHvp9BS9fyBmb2gZzD0BHGPiyKoAo_uYAQ",
-      }
+const consultaApi = () => {
+  fetch("http://localhost/Prueba_unicosta/config/proxy.php")
+    .then((response) => {
+      return response.json();
     })
-      .then(async (response) => {
-        const resp = await response.json();
-        console.log(resp);
-      })
-      .catch((ex) => {
-        console.log("error");
-        console.error(ex);
+    .then((data) => {
+      const datosParaInsertar = data.map((item) => {
+        return {
+          programa: item.programa,
+          periodo: item.periodo,
+          codigo: item.codigo,
+          nombre: item.nombre,
+          modalidad: item.modalidad,
+        };
       });
-  };
+      const url = `${servidor}/controlador/ejecucionConsultas.php?tipo_operacion=insertarGrupo`;
+      const options = {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(datosParaInsertar),
+      }; 
+      fetch(url, options)
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+    })
+    .catch((ex) => {
+      console.log("error");
+      console.error(ex);
+    });
+}
 
   const cargarDatosGrupo = () => {
     const url = `${servidor}/controlador/ejecucionConsultas.php?tipo_operacion=seleccionarGrupos`;

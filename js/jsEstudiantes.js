@@ -32,6 +32,7 @@ const consulta = () => {
     });
   }
 document.body.onload = cargarDatosEstudiantes();
+document.body.onload = consulta();
 
 
 const pintar_tabla_estudiantes = (datos) => {
