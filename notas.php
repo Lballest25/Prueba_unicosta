@@ -49,8 +49,10 @@
     <label for="nota3">Nota 3:</label>
     <input type="number" name="nota3A" id="nota3A" min="0" max="5" required>
     <br><br>
+    <label for="identificacion">Id:</label>
     <input type="number" name="identificacionA" id="identificacionA" readonly="readonly">
-	<button onclick="actualizar()" >Actualizar notas</button>
+	<br><br>
+    <button onclick="actualizar()" >Actualizar notas</button>
 	</form>
 </div>
 

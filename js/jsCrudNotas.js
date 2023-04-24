@@ -92,6 +92,8 @@ const actualizar = () => {
     .then(data =>{ 
         pintar_tabla_CrudNotas(data);
         console.log(data);
+        $("#contenedorFormCrear").show();
+        $("#contenedorFormActualizar").hide();
     })
     .catch(function(error){
         console.error('Error:', error);
@@ -141,4 +143,6 @@ const notaFaltante = (nota1, nota2, nota3) => {
 
 const crear = (id) => {
     $("#identificacion").val(id);
+    $("#contenedorFormCrear").hide();
+    $("#contenedorFormActualizar").show();
 } 

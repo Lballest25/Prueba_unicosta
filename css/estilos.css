@@ -33,7 +33,7 @@ li a:hover {
 }
 
 .contenedorTabla{
-    margin-left: 80px;
+    margin-left: 25px;
     margin-top: 10px;
 }
 
@@ -66,7 +66,7 @@ button {
     color: black;
     border: 2px solid #4CAF50;
     border-radius: 2px;
-    padding: 5px;
+    padding: 2px;
     font-size: 10px;
   }
 
@@ -113,19 +113,21 @@ button {
     border: 1px solid #C6C6C6;
     border-radius: 5px;
     text-align: center;
-    padding: 10px;
+    padding: 5px;
     padding-top: 0px;
     padding-left: 0px;
     padding-right: 0px;
-    margin: 150px;
-    margin-left: 550px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: 70px;
+    font-size: 10px;
   }
 
   h2{
     color: white;
-    padding: 30px;
-    padding-top: 10px;
-    padding-bottom: 10px;
+    padding: 5px;
+    padding-top: 5px;
+    padding-bottom: 5px;
     margin: 0px;
     margin-bottom: 15px;
     background-color: #4CAF50;
@@ -137,10 +139,22 @@ button {
     float: left;
   }
 
+  #identificacion, #identificacionA{
+    width: 40%;
+  }
+
+  input[type = number]{
+    border: none;
+  border-bottom: 2px solid #4CAF50;
+  }
+
 }
 
 @media screen and (min-width: 481px) and (max-width: 768px) {
-    ul {
+  .contenedorMenu{
+    font-size: 10px;
+}
+  ul {
   list-style-type: none;
   margin: 0;
   padding: 0;
@@ -167,14 +181,15 @@ li a:hover {
 
 .contenedorTabla{
     float: left;
-    margin-left: 50px;
-    margin-top: 30px;
+    margin-left: 0px;
+    margin-top: 20px;
 }
 
  table, tr{
     border-collapse: collapse;
     width: 100%;
     text-align: center;
+    font-size: 10px;
  }
 
  th{
@@ -199,7 +214,8 @@ button {
     color: black;
     border: 2px solid #4CAF50;
     border-radius: 2px;
-    padding: 10px;
+    padding: 5px;
+    font-size: 10px;
   }
 
   button {
@@ -248,8 +264,8 @@ button {
     padding-top: 0px;
     padding-left: 0px;
     padding-right: 0px;
-    margin: 150px;
-    margin-left: 550px;
+    margin-top: 30px;
+    margin-left: 120px;
   }
 
   h2{
@@ -262,6 +278,16 @@ button {
     background-color: #4CAF50;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
+    font-size: 15px;
+  }
+
+  #identificacion, #identificacionA{
+    width: 40%;
+  }
+
+  input[type = number]{
+    border: none;
+  border-bottom: 2px solid #4CAF50;
   }
 
 }
@@ -294,7 +320,7 @@ li a:hover {
 
 .contenedorTabla{
     width: 50%;
-    margin-left: 200px;
+    margin-left: 30px;
     margin-top: 30px;
 }
 
@@ -376,13 +402,14 @@ button {
     padding-top: 0px;
     padding-left: 0px;
     padding-right: 0px;
-    margin: 150px;
-    margin-left: 550px;
+    margin-top: 5px;
+    margin-bottom: 30px;
+    margin-left: 220px;
   }
 
   h2{
     color: white;
-    padding: 30px;
+    padding: 50px;
     padding-top: 10px;
     padding-bottom: 10px;
     margin: 0px;
@@ -390,6 +417,15 @@ button {
     background-color: #4CAF50;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
+  }
+
+  #identificacion, #identificacionA{
+    width: 40%;
+  }
+
+  input[type = number]{
+    border: none;
+  border-bottom: 2px solid #4CAF50;
   }
 }
 
@@ -421,7 +457,7 @@ li a:hover {
 .contenedorTabla{
     width: 50%;
     margin-left: 270px;
-    margin-top: 60px;
+    margin-top: 50px;
 }
 
  table, tr{
@@ -502,8 +538,8 @@ button {
     padding-top: 0px;
     padding-left: 0px;
     padding-right: 0px;
-    margin: 150px;
-    margin-left: 550px;
+    margin-top: 50px;
+    margin-left: 60px;
   }
 
   h2{
@@ -516,6 +552,19 @@ button {
     background-color: #4CAF50;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
+  }
+
+  .contenedorCrudNotas{
+    float: left;
+  }
+
+  #identificacion, #identificacionA{
+    width: 40%;
+  }
+
+  input[type = number]{
+    border: none;
+  border-bottom: 2px solid #4CAF50;
   }
 }
 
@@ -640,6 +689,15 @@ button {
 
   .contenedorCrudNotas{
     float: left;
+  }
+
+  #identificacion, #identificacionA{
+    width: 40%;
+  }
+
+  input[type = number]{
+    border: none;
+  border-bottom: 2px solid #4CAF50;
   }
 
 }
