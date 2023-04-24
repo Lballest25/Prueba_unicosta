@@ -49,13 +49,21 @@ class consultas extends bdconexion {
         return $notas = $sql->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    public function obtener_notasEstudiantes(){
+        $sql = bdconexion::conexion()->prepare("SELECT e.*, n.nota1, n.nota2, n.nota3
+        FROM estudiantes e
+        LEFT JOIN notas n ON e.identificacion = n.estudiante_identificacion");
+        $sql->execute();
+        return $estudiantesNotas = $sql->fetchAll(PDO::FETCH_ASSOC);
+    }
+
     public function insertar_notas($id_estudiante, $nota1, $nota2, $nota3){
         $sql = bdconexion::conexion()->prepare("SELECT identificacion FROM estudiantes WHERE identificacion =".$id_estudiante);
         $sql->execute();
         if ($sql->rowCount() > 0) {
-            $sql = bdconexion::conexion()->prepare("INSERT INTO Notas (estudiante_identificacion, nota1, nota2, nota3) VALUES ('".$id_estudiante."','".$nota1."','".$nota2."','".$nota3."')");
+            $sql = bdconexion::conexion()->prepare("UPDATE Notas SET nota1 = ".$nota1.", nota2 = ".$nota2.", nota3 =".$nota3." WHERE estudiante_identificacion = ".$id_estudiante);
             if ($sql->execute()) {
-                $resultado = self::obtener_notas();
+                $resultado = self::obtener_notasEstudiantes();
                 return $resultado;
             }
         }
@@ -65,7 +73,7 @@ class consultas extends bdconexion {
         $sql = bdconexion::conexion()->prepare("UPDATE Notas SET nota1=".$nota1.", nota2=".$nota2.", nota3=".$nota3." WHERE estudiante_identificacion=".$id_estudiante);
         $sql->execute();
         if ($sql->rowCount() > 0) {
-            $resultado = self::obtener_notas();
+            $resultado = self::obtener_notasEstudiantes();
             return $resultado;
         }else {
             return "error";

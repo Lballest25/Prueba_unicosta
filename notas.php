@@ -23,16 +23,16 @@
 <h2>Crear nota</h2>
 	<form id="form">
     <label for="nota1">Nota 1:</label>
-    <input type="number" name="nota1" id="nota1" min="0" max="5" required>
+    <input type="number" name="nota1" id="nota1" min="0" max="5" step="0.01" required>
     <br><br>
     <label for="nota2">Nota 2:</label>
-    <input type="number" name="nota2" id="nota2" min="0" max="5" required>
+    <input type="number" name="nota2" id="nota2" min="0" max="5" step="0.01" required>
     <br><br>
     <label for="nota3">Nota 3:</label>
-    <input type="number" name="nota3" id="nota3" min="0" max="5" required>
+    <input type="number" name="nota3" id="nota3" min="0" max="5" step="0.01" required>
     <br><br>
     <label for="identificacion">Id:</label>
-    <input type="number" name="identificacion" id="identificacion">
+    <input type="number" name="identificacion" id="identificacion" readonly="readonly">
     <br><br>
 	<button type="submit">Guardar notas</button>
 	</form>
@@ -49,7 +49,7 @@
     <label for="nota3">Nota 3:</label>
     <input type="number" name="nota3A" id="nota3A" min="0" max="5" required>
     <br><br>
-    <input type="number" name="identificacionA" id="identificacionA">
+    <input type="number" name="identificacionA" id="identificacionA" readonly="readonly">
 	<button onclick="actualizar()" >Actualizar notas</button>
 	</form>
 </div>
@@ -62,7 +62,10 @@
                 <th>Nota 1</th>
                 <th>Nota 2</th>
                 <th>Nota 3</th>
+                <th>Nota final</th>
+                <th>Nota faltante</th>
                 <th>Acciones</th>
+                <th>Crear</th>
             </tr>
         </thead>
         <tbody id="tablaCrudNotas">
@@ -73,6 +76,6 @@
 </div>
     <script src="js/app.js"></script>
     <script src="js/jsCrudNotas.js"></script>
-    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 </html>

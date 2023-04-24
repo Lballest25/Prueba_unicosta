@@ -18,13 +18,17 @@ document.body.onload = cargarDatosCrudNotas();
 const pintar_tabla_CrudNotas = (datos) => {
     let tab_datos = document.querySelector("#tablaCrudNotas");
     for (let item of datos) {
+
         tab_datos.innerHTML +=`
         <tr>
-        <td>${item.estudiante_identificacion}</td>
+        <td>${item.identificacion}</td>
         <td>${item.nota1}</td>
         <td>${item.nota2}</td>
         <td>${item.nota3}</td>
-        <td><button onclick="editar(${item.estudiante_identificacion})">Editar</button></td>
+        <td><button onclick="calcularNotaFinal(${item.nota1}, ${item.nota2}, ${item.nota3})">Calcular</button></td>
+        <td><button onclick="notaFaltante(${item.nota1}, ${item.nota2}, ${item.nota3})">Calcular</button></td>
+        <td><button onclick="editar(${item.identificacion})">Editar</button></td>
+        <td><button onclick="crear(${item.identificacion})">Crear</button></td>
         </tr>
         `;
     }
@@ -93,3 +97,48 @@ const actualizar = () => {
         console.error('Error:', error);
     });
 }
+
+const calcularNotaFinal = (nota1, nota2, nota3) => {
+    let nota_final = (parseFloat(nota1)*0.3 + parseFloat(nota2)*0.3 + parseFloat(nota3)*0.4);
+    Swal.fire({
+        title: 'Tu nota final es de:'+nota_final.toFixed(1),
+        showClass: {
+          popup: 'animate__animated animate__fadeInDown'
+        },
+        hideClass: {
+          popup: 'animate__animated animate__fadeOutUp'
+        }
+      })
+  }
+
+const notaFaltante = (nota1, nota2, nota3) => {
+    const notaParcial = nota1 * 0.3 + nota2 * 0.3 + nota3 * 0.4;
+    const puntosFaltantes = 3.0 - notaParcial;
+    const notaFaltante = puntosFaltantes / 0.4;
+    const notaFaltanteRedondeada = notaFaltante.toFixed(2);
+    if (notaParcial < 3) {
+        Swal.fire({
+            title: 'La nota faltante es de:'+notaFaltanteRedondeada,
+            showClass: {
+              popup: 'animate__animated animate__fadeInDown'
+            },
+            hideClass: {
+              popup: 'animate__animated animate__fadeOutUp'
+            }
+          })
+    } else {
+        Swal.fire({
+            title: 'Aprobaste!',
+            showClass: {
+              popup: 'animate__animated animate__fadeInDown'
+            },
+            hideClass: {
+              popup: 'animate__animated animate__fadeOutUp'
+            }
+          })
+    }
+}
+
+const crear = (id) => {
+    $("#identificacion").val(id);
+} 

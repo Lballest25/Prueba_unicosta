@@ -45,7 +45,7 @@ switch ($tipo_consulta) {
 
     case 'obtenerNotas':
         $consultas = new consultas();
-        $ejecutar = $consultas->obtener_notas();
+        $ejecutar = $consultas->obtener_notasEstudiantes();
         echo json_encode($ejecutar);
         break;
         
@@ -73,6 +73,13 @@ switch ($tipo_consulta) {
         $nota3 = $_POST['nota3A'];
         $consultas = new consultas();
         $ejecutar = $consultas->actualizar_notas($identificacion, $nota1, $nota2, $nota3);
+        echo json_encode($ejecutar);
+        break;
+
+    case 'calcularNota':
+        $identificacion = $_POST['id'];
+        $consultas = new consultas();
+        $ejecutar = $consultas->calcular_nota($identificacion);
         echo json_encode($ejecutar);
         break;
 
