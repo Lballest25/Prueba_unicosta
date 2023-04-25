@@ -34,36 +34,35 @@ const pintar_tabla_CrudNotas = (datos) => {
     }
 }
 
-const form = document.querySelector("#form");
-form.addEventListener("submit", (e) =>{
-    e.preventDefault();
-    const datos = new FormData(document.getElementById('form'));
+const crearNotas = () => {
+    const form = document.querySelector("#form");
     const url = `${servidor}/controlador/ejecucionConsultas.php?tipo_operacion=insertarNotas`;
-    fetch(url, {
-        method:'POST',
-        body:datos
-    })
-    .then (data => data.json())
-    .then (data => {
-        console.log(data);
-        if (data != 0) {
+
+    form.addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        fetch(url, {
+            method:'post',
+            body:new FormData(form)
+        }).then(data => data.json())
+        .then(data => {
             console.log(data);
             document.getElementById('tablaCrudNotas').innerHTML = "";
             pintar_tabla_CrudNotas(data);
             form.reset();
-            }
-    })
-    .catch(function(error){
-        console.log('error', error);
+        })
+        .catch(function(error){
+            console.log('error', error);
+        });
     });
-});
+};
 
 const editar = (id) => {
     const url = `${servidor}/controlador/ejecucionConsultas.php?tipo_operacion=editarNotas`;
     var formData = new FormData();
     formData.append('id',id);
     fetch(url,{
-        method:'get',
+        method:'POST',
         body:formData
     })
     .then(data => data.json())
@@ -86,7 +85,7 @@ const actualizar = () => {
     let datos_actualizar = new FormData(document.querySelector("#formActualizar"));
     const url = `${servidor}/controlador/ejecucionConsultas.php?tipo_operacion=actualizarNotas`;
     fetch(url, {
-        method: 'get',
+        method: 'POST',
         body: datos_actualizar
     })
     .then(data => data.json())

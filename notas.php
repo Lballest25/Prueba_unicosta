@@ -33,7 +33,7 @@
     <label for="identificacion">Id:</label>
     <input type="number" name="identificacion" id="identificacion" readonly="readonly">
     <br><br>
-	<button type="submit">Guardar notas</button>
+	<button onclick="crearNotas()">Guardar notas</button>
 	</form>
 </div>
 <div id="contenedorFormActualizar" class="contenedorFormCrear" hidden="true">

@@ -30,10 +30,7 @@ class consultas extends bdconexion {
     }
 
     public function select_gruEstudiante(){
-        $sql = bdconexion::conexion()->prepare("SELECT g.programa, g.periodo, g.codigo, g.nombre, g.modalidad, e.identificacion, e.nombres, e.apellidos, e.correo, n.nota1, n.nota2, n.nota3 
-        FROM Grupos g 
-        JOIN Estudiantes e ON g.codigo = e.grupo_codigo 
-        JOIN Notas n ON e.identificacion = n.estudiante_identificacion;");
+        $sql = bdconexion::conexion()->prepare("SELECT * FROM grupos, estudiantes");
         $sql->execute();
         return $array = $sql->fetchAll(PDO::FETCH_ASSOC);
     }
@@ -59,10 +56,10 @@ class consultas extends bdconexion {
     }
 
     public function insertar_notas($id_estudiante, $nota1, $nota2, $nota3){
-        $sql = bdconexion::conexion()->prepare("SELECT identificacion FROM estudiantes WHERE identificacion =".$id_estudiante);
+        $sql = bdconexion::conexion()->prepare("SELECT identificacion FROM estudiantes WHERE identificacion = ".$id_estudiante);
         $sql->execute();
         if ($sql->rowCount() > 0) {
-            $sql = bdconexion::conexion()->prepare("UPDATE Notas SET nota1 = ".$nota1.", nota2 = ".$nota2.", nota3 =".$nota3." WHERE estudiante_identificacion = ".$id_estudiante);
+            $sql = bdconexion::conexion()->prepare("INSERT INTO `notas` (`id`, `estudiante_identificacion`, `nota1`, `nota2`, `nota3`) VALUES (NULL, '$id_estudiante', '$nota1', '$nota2', '$nota3')");
             if ($sql->execute()) {
                 $resultado = self::obtener_notasEstudiantes();
                 return $resultado;

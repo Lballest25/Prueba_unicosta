@@ -8,31 +8,6 @@ switch ($tipo_consulta) {
         $ejecutar = $consultas->select_grupos();
         echo json_encode($ejecutar);
         break;
-
-    case 'insertarGrupo':
-        $data = json_decode(file_get_contents("php://input"), true);
-        foreach ($data as $item) {
-            $programa = $item['program'];
-            $periodo = $item['term'];
-            $codigo = $item['course_code'];
-            $nombre = $item['course_name'];
-            $modalidad = $item['modality'];
-            $consultas = new consultas();
-            $ejecutar = $consultas->insertar_grupo($programa, $periodo, $codigo, $nombre, $modalidad);
-        }
-        echo json_encode($ejecutar);
-        break;
-
-    case 'insertarEstudiante':
-        $curso = $_POST['curso'];
-        $identificacion = $_POST['identificacion'];
-        $nombres = $_POST['nombres'];
-        $apellidos = $_POST['apellidos'];
-        $correo = $_POST['correo'];
-        $consultas = new consultas();
-        $ejecutar = $consultas->insertar_estudiante($curso, $identificacion, $nombres, $apellidos, $correo);
-        echo json_encode($ejecutar);
-        break;
     
     case 'seleccionarEstudiantes':
         $consultas = new consultas();
