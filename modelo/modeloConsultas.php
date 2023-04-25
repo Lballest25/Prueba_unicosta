@@ -7,9 +7,9 @@ class consultas extends bdconexion {
     }
 
     public function insertar_grupo($programa, $periodo, $codigo, $nombre, $modalidad){
-        $sql = bdconexion::conexion()->prepare("INSERT INTO Grupos (programa, periodo, codigo, nombre, modalidad) VALUES (".$programa.",".$periodo.",".$codigo.",".$nombre.",".$modalidad.")");
+        $sql = bdconexion::conexion()->prepare("INSERT INTO grupos (programa, periodo, codigo, nombre, modalidad) VALUES ('$programa', '$periodo', '$codigo', '$nombre', '$modalidad')");
         if ($sql->execute()) {
-            $resultado = self::select_grupos();
+            $resultado = self::select_grupos(); 
             return $resultado;
         }
     }
@@ -21,7 +21,8 @@ class consultas extends bdconexion {
     }
 
     public function insertar_estudiante($curso, $identificacion, $nombres, $apellidos, $correo){
-        $sql = bdconexion::conexion()->prepare("INSERT INTO Estudiantes (curso, identificacion, nombres, apellidos, correo) VALUES (".$curso.",'".$identificacion."','".$nombres."','".$apellidos."','".$correo."')");
+        $sql = bdconexion::conexion()->prepare("INSERT INTO estudiantes (curso, identificacion, nombres, apellidos, correo) 
+        VALUES ('$curso','$identificacion','$nombres','$apellidos','$correo')");
         if ($sql->execute()) {
             $resultado = self::select_estudiantes();
             return $resultado;

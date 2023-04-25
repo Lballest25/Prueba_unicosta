@@ -1,21 +1,38 @@
-const consulta = () => {
-    fetch("http://consultas.cuc.edu.co/api/v1.0/estudiantes", {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization:
-          "JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo0LCJ1c2VybmFtZSI6InBydWViYTIwMjJAY3VjLmVkdS5jbyIsImV4cCI6MTY0OTQ1MzA1NCwiY29ycmVvIjoicHJ1ZWJhMjAyMkBjdWMuZWR1LmNvIn0.MAoFJE2SBgHvp9BS9fyBmb2gZzD0BHGPiyKoAo_uYAQ",
-      },
-    })
-      .then(async (response) => {
-        const resp = await response.json();
-        console.log(resp);
-      })
-      .catch((ex) => {
-        console.log("error");
-        console.error(ex);
-      });
-  };
+const consultaApi = () => {
+  const url = `${servidor}/config/guardarEstudiantes.php`;
+  fetch(url, {
+    method: 'POST',
+    body: JSON.stringify({
+      tipo_operacion: "insertarEstudiante"
+    }),
+})
+.then(data => data.text())
+.then(data => {
+    console.log(data);
+    pintar_tabla_estudiantes(data);
+})
+.catch(function (error) {
+    console.log('error', error);
+});
+}
+
+/*const consultaApi = () => {
+  const token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo0LCJ1c2VybmFtZSI6InBydWViYTIwMjJAY3VjLmVkdS5jbyIsImV4cCI6MTY0OTQ1MzA1NCwiY29ycmVvIjoicHJ1ZWJhMjAyMkBjdWMuZWR1LmNvIn0.MAoFJE2SBgHvp9BS9fyBmb2gZzD0BHGPiyKoAo_uYAQ';
+
+const codigoGrupo = 'G001'; // Reemplazar con el código del grupo
+
+fetch('http://consultas.cuc.edu.co/api/v1.0/estudiantes', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+    'Authorization': `Bearer ${token}`
+  },
+  body: JSON.stringify({ course: codigoGrupo })
+})
+.then(response => response.json())
+.then(data => console.log(data))
+.catch(error => console.error(error));
+}*/
 
   const cargarDatosEstudiantes = () => {
     const url = `${servidor}/controlador/ejecucionConsultas.php?tipo_operacion=seleccionarEstudiantes`;
@@ -32,8 +49,6 @@ const consulta = () => {
     });
   }
 document.body.onload = cargarDatosEstudiantes();
-document.body.onload = consulta();
-
 
 const pintar_tabla_estudiantes = (datos) => {
     let tab_datos = document.querySelector("#tablaEstudiantes");

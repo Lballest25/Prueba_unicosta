@@ -11,12 +11,12 @@ switch ($tipo_consulta) {
 
     case 'insertarGrupo':
         $data = json_decode(file_get_contents("php://input"), true);
-        foreach ($variable as $key => $value) {
-            $programa = $_POST['programa'];
-            $periodo = $_POST['periodo'];
-            $codigo = $_POST['codigo'];
-            $nombre = $_POST['nombre'];
-            $modalidad = $_POST['modalidad'];
+        foreach ($data as $item) {
+            $programa = $item['program'];
+            $periodo = $item['term'];
+            $codigo = $item['course_code'];
+            $nombre = $item['course_name'];
+            $modalidad = $item['modality'];
             $consultas = new consultas();
             $ejecutar = $consultas->insertar_grupo($programa, $periodo, $codigo, $nombre, $modalidad);
         }

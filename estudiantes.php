@@ -18,7 +18,7 @@
 </div>
 
 <div class="contenedorBoton">
-    <button type="submit">Guardar</button>
+    <button onclick="consultaApi()">Guardar</button>
 </div>
 
 <div class="contenedorTabla">

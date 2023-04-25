@@ -9,7 +9,6 @@
     <title>Document</title>
 </head>
 <body>
-
 <div class="contenedorMenu">
 <ul>
     <li><a href="grupos.php">Grupos</a></li>
