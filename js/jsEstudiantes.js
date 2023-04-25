@@ -2,11 +2,8 @@ const consultaApi = () => {
   const url = `${servidor}/config/guardarEstudiantes.php`;
   fetch(url, {
     method: 'POST',
-    body: JSON.stringify({
-      tipo_operacion: "insertarEstudiante"
-    }),
 })
-.then(data => data.text())
+.then(data => data.json())
 .then(data => {
     console.log(data);
     pintar_tabla_estudiantes(data);
@@ -16,23 +13,6 @@ const consultaApi = () => {
 });
 }
 
-/*const consultaApi = () => {
-  const token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo0LCJ1c2VybmFtZSI6InBydWViYTIwMjJAY3VjLmVkdS5jbyIsImV4cCI6MTY0OTQ1MzA1NCwiY29ycmVvIjoicHJ1ZWJhMjAyMkBjdWMuZWR1LmNvIn0.MAoFJE2SBgHvp9BS9fyBmb2gZzD0BHGPiyKoAo_uYAQ';
-
-const codigoGrupo = 'G001'; // Reemplazar con el código del grupo
-
-fetch('http://consultas.cuc.edu.co/api/v1.0/estudiantes', {
-  method: 'POST',
-  headers: {
-    'Content-Type': 'application/json',
-    'Authorization': `Bearer ${token}`
-  },
-  body: JSON.stringify({ course: codigoGrupo })
-})
-.then(response => response.json())
-.then(data => console.log(data))
-.catch(error => console.error(error));
-}*/
 
   const cargarDatosEstudiantes = () => {
     const url = `${servidor}/controlador/ejecucionConsultas.php?tipo_operacion=seleccionarEstudiantes`;

@@ -1,5 +1,5 @@
 const consultaApi = () => {
-  const url = `${servidor}/config/guardarGrupos.php?tipo_operacion=insertarGrupo`;
+  const url = `${servidor}/config/guardarGrupos.php`;
   fetch(url, {
     method: 'get'
 })

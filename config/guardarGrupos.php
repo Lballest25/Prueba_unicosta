@@ -26,9 +26,6 @@ if (curl_errno($ch)) {
   header('Content-Type: application/json');
   require_once "../config/conexion.php";
   require_once "../modelo/modeloConsultas.php";
-  $tipo_consulta = $_GET['tipo_operacion'];
-  switch ($tipo_consulta) {
-    case 'insertarGrupo':
       $data = json_decode($response, true);
       $consultas = new consultas();
       if ($data && is_array($data)) {
@@ -42,13 +39,7 @@ if (curl_errno($ch)) {
         }
       }
       echo json_encode(array('mensaje' => 'Datos insertados correctamente'));
-      break;
-    
-    default:
-      # code...
-      break;
   }
-}
 
 curl_close($ch);
 ?>
